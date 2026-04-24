@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPM2 Central - Download Car Parking Multiplayer 2</title>
+    <style>
+        /* --- ESTILOS CSS (Tudo em um só lugar) --- */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: white;
+        }
+
+        /* Barra de Navegação */
+        header {
+            background-color: #1a1a1a;
+            border-bottom: 3px solid #ff8c00;
+            padding: 10px 0;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff8c00;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ff8c00;
+        }
+
+        /* Banner Principal (Hero) */
+        .hero {
+            height: 400px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://unsplash.com'); /* Imagem de carro genérica */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; color: #ff8c00; }
+
+        /* Seção de Download Branca */
+        .download-section {
+            background-color: #ffffff;
+            color: #333;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .download-section h2 { margin-bottom: 30px; font-size: 28px; }
+
+        .download-btn {
+            display: inline-block;
+            background-color: #ff8c00;
+            color: white;
+            padding: 20px 60px;
+            text-decoration: none;
+            font-size: 22px;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            background-color: #e67e00;
+        }
+
+        .download-btn span {
+            display: block;
+            font-size: 14px;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+
+        .meta-info {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Grid de Cards */
+        .grid-container {
+            max-width: 1200px;
+            margin: -40px auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 5px solid #ff8c00;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card h3 { color: #ff8c00; margin-top: 0; }
+        .card ul { padding-left: 20px; color: #bbb; }
+        .card p { color: #bbb; line-height: 1.6; }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #0a0a0a;
+            color: #555;
+            font-size: 14px;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">CPM2 Central</div>
+            <ul class="nav-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#" class="active">Download</a></li>
+                <li><a href="#">Recursos</a></li>
+                <li><a href="#">Suporte</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Car Parking Multiplayer 2</h1>
+            <p>A melhor experiência de simulação e tuning de carros</p>
+        </section>
+
+        <section class="download-section">
+            <h2>Baixe o CPM2 - Versão Mais Recente</h2>
+            <a href="#" class="download-btn">
+                DOWNLOAD AGORA
+                <span>Versão 1.4.5 (Android & iOS)</span>
+            </a>
+            <div class="meta-info">
+                <span>⭐ Grátis para Baixar</span>
+                <span>🛡️ Seguro & Verificado</span>
+                <span>📦 Tamanho: 2.1 GB</span>
+            </div>
+        </section>
+
+        <div class="grid-container">
+            <div class="card">
+                <h3>O que há de novo?</h3>
+                <ul>
+                    <li>Novos carros de drift adicionados</li>
+                    <li>Gráficos ultra-realistas melhorados</li>
+                    <li>Novos mapas de mundo aberto</li>
+                    <li>Física de colisão otimizada</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Requisitos do Sistema</h3>
+                <p><strong>Android:</strong> Versão 8.0 ou superior, 4GB de RAM.</p>
+                <p><strong>iOS:</strong> iPhone 8 ou superior, iOS 13.0 ou posterior.</p>
+            </div>
+            <div class="card">
+                <h3>Recursos Chave</h3>
+                <p>Modo Multiplayer online, customização completa de peças, mercado de troca de carros e missões de carreira desafiadoras.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 CPM2 Fan Community. Desenvolvido para fins de demonstração.</p>
+    </footer>
+
+</body>
+</html>
