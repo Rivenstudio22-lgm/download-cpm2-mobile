@@ -3,65 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CPM2 Central | Download Oficial</title>
+    <title>CPM2 Central | Motores e Customização</title>
     
-    <!-- ÍCONE DA ABA -->
     <link rel="icon" type="image/jpeg" href="favicon.png.jpg">
-    
     <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
-        :root { --orange: #ff8c00; --dark: #121212; --gray: #1a1a1a; }
+        :root { --orange: #ff8c00; --black: #000000; --dark-gray: #111111; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        body { background-color: #f4f4f4; color: #333; line-height: 1.8; }
+        
+        /* FUNDO PRETO PARA O SITE TODO */
+        body { background-color: var(--black); color: #eeeeee; line-height: 1.8; }
 
-        /* Navegação */
-        header { background-color: var(--gray); border-bottom: 3px solid var(--orange); position: sticky; top: 0; z-index: 1000; }
+        header { background-color: var(--dark-gray); border-bottom: 2px solid var(--orange); position: sticky; top: 0; z-index: 1000; }
         .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
         .logo { color: var(--orange); font-weight: bold; font-size: 22px; text-transform: uppercase; }
-        .nav-links { list-style: none; display: flex; gap: 20px; }
-        .nav-links a { color: #ccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
-        .nav-links a:hover { color: var(--orange); }
 
-        /* BANNER COM A SUA IMAGEM */
         .hero { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('car-parking-multiplayer-2-free.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            height: 500px;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            color: white; 
-            text-align: center; 
-            padding: 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('car-parking-multiplayer-2-free.jpg'); 
+            background-size: cover; background-position: center; height: 500px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;
         }
-        .hero-icon { width: 90px; height: 90px; border-radius: 20px; margin-bottom: 15px; border: 2px solid var(--orange); box-shadow: 0 0 15px rgba(255,140,0,0.5); }
-        .hero h1 { font-size: 38px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); margin-bottom: 10px; }
+        .hero-icon { width: 90px; height: 90px; border-radius: 20px; margin-bottom: 15px; border: 2px solid var(--orange); }
+        .hero h1 { font-size: 38px; text-shadow: 0 0 15px rgba(255,140,0,0.5); margin-bottom: 10px; }
 
-        /* Botão Download com o seu link */
-        .btn-link { text-decoration: none; margin-top: 20px; }
-        .btn-download { background-color: var(--orange); color: white; padding: 15px 50px; border-radius: 8px; cursor: pointer; border: none; transition: 0.3s; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-        .btn-download:hover { transform: scale(1.05); background-color: #e67e00; }
+        /* Botões */
+        .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; width: 100%; max-width: 320px; }
+        .btn-download { display: flex; align-items: center; justify-content: center; gap: 15px; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-google { background-color: var(--orange); }
+        .btn-apple { background-color: #222; border: 1px solid #444; }
+        .btn-download:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-        /* Layout de Conteúdo */
+        /* Conteúdo em Cards Pretos */
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; }
-        
-        .article-card { background: white; padding: 35px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .article-card { background: var(--dark-gray); padding: 35px; border-radius: 12px; border: 1px solid #222; }
         .article-card h2 { color: var(--orange); font-size: 28px; margin-bottom: 20px; border-left: 6px solid var(--orange); padding-left: 20px; }
-        .article-card h3 { margin: 25px 0 15px; color: #222; }
-        .article-card p { margin-bottom: 20px; text-align: justify; color: #444; font-size: 16px; }
-        .article-card ul { margin-bottom: 20px; padding-left: 25px; }
-        .article-card li { margin-bottom: 10px; }
+        .article-card h3 { color: var(--orange); margin-top: 25px; margin-bottom: 10px; }
+        .article-card p { color: #ccc; margin-bottom: 15px; text-align: justify; }
 
-        /* Lateral */
-        .sidebar-box { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); position: sticky; top: 100px; }
-        .side-img { width: 100%; border-radius: 10px; margin: 15px 0; border: 1px solid #ddd; }
+        .sidebar-box { background: var(--dark-gray); padding: 25px; border-radius: 12px; border: 1px solid #222; position: sticky; top: 100px; }
+        .side-img { width: 100%; border-radius: 10px; margin: 15px 0; }
 
-        footer { background: var(--gray); color: #666; text-align: center; padding: 40px; font-size: 13px; margin-top: 60px; }
+        footer { background: var(--dark-gray); color: #555; text-align: center; padding: 40px; font-size: 13px; margin-top: 60px; border-top: 1px solid #222; }
 
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } .hero h1 { font-size: 28px; } }
+        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -69,45 +54,44 @@
     <header>
         <div class="nav-container">
             <div class="logo">CPM2 Central</div>
-            <ul class="nav-links">
-                <li><a href="#">Início</a></li>
-                <li><a href="#" style="color: var(--orange)">Download</a></li>
-                <li><a href="#">Atualizações</a></li>
-            </ul>
         </div>
     </header>
 
     <section class="hero">
         <img src="favicon.png.jpg" alt="Logo" class="hero-icon">
         <h1>Car Parking Multiplayer 2</h1>
-        <p>Domine as ruas com a melhor simulação mobile do mundo.</p>
+        <p>Potência máxima e estilo único nas suas mãos.</p>
         
-        <!-- O SEU LINK DA PLAY STORE ABAIXO -->
-     <a href="https://play.google.com/store/apps/details?id=com.olzhas.carparking.multyplayer2&hl=pt" target="_blank" class="btn-link">
-
-            <div class="btn-download">BAIXAR AGORA (PLAY STORE)</div>
-        </a>
+        <div class="btn-group">
+            <a href="https://google.com" target="_blank" class="btn-download btn-google">
+                <i class="fab fa-google-play fa-2x"></i>
+                <div style="text-align: left;"><span>Android</span><br><b>PLAY STORE</b></div>
+            </a>
+            <a href="https://apple.com" target="_blank" class="btn-download btn-apple">
+                <i class="fab fa-apple fa-2x"></i>
+                <div style="text-align: left;"><span>iOS</span><br><b>APP STORE</b></div>
+            </a>
+        </div>
     </section>
 
     <div class="container">
         <main>
             <article class="article-card">
-                <h2>A Revolução do Tuning: O Guia do CPM2 (2026)</h2>
+                <h2>Potência Sob o Capô: Os Motores do CPM2</h2>
+                <p>O coração de cada veículo no <strong>Car Parking Multiplayer 2</strong> é o seu motor. Com a nova atualização, o jogo permite realizar o **Swap de Motor**, possibilitando a instalação de blocos de alto desempenho, como motores S85, V12 ou até configurações customizadas para alcançar mais de 2.000 cavalos de potência.</p>
                 
-                <p>O <strong>Car Parking Multiplayer 2 (CPM2)</strong> não é apenas uma sequência; é um marco na simulação automotiva mobile. Esqueça tudo o que você sabia sobre o primeiro jogo. A versão 2026 traz um motor gráfico e uma física de pneus que desafiam os limites do que um smartphone pode processar, oferecendo uma experiência que rivaliza com grandes títulos de consoles.</p>
+                <p>Você pode otimizar o desempenho ajustando o **ECU**, instalando turbocompressores e configurando a relação de marchas para maximizar a aceleração ou a velocidade máxima. Além disso, o sistema de som realista reflete cada modificação feita no escapamento e na turbina.</p>
 
-                <h3>Novidades Absurdas da Atualização:</h3>
-                <ul>
-                    <li><strong>Mapas Gigantescos:</strong> Pilotagem em túneis subaquáticos e rodovias costeiras com física de vento real.</li>
-                    <li><strong>Pista de Nürburgring:</strong> O "Inferno Verde" chegou! Teste seus tempos de volta na pista mais famosa do mundo.</li>
-                    <li><strong>Física de Danos:</strong> Seus erros agora custam caro. O desgaste de pneus e danos estruturais afetam diretamente a performance.</li>
-                    <li><strong>Garagem 4K:</strong> Mais de 160 veículos fielmente reproduzidos com interiores totalmente funcionais.</li>
+                <h2>Plotagens e Estilo Visual</h2>
+                <p>O sistema de customização visual do CPM2 é um dos mais robustos da categoria. Agora, os jogadores podem criar designs complexos utilizando centenas de camadas de vinil, decalques personalizados e até **livery nos vidros**.</p>
+                
+                <h3>Tipos de Plotagem Disponíveis:</h3>
+                <ul style="padding-left: 20px; color: #ccc;">
+                    <li><strong>Vinyl Wrapping:</strong> Mude a cor do carro com acabamentos foscos, metálicos ou cromados.</li>
+                    <li><strong>Decalques Customizados:</strong> Crie logos, chamas, ou réplicas de patrocinadores reais para um visual de corrida.</li>
+                    <li><strong>Estilo de Drift e Anime:</strong> Utilize camadas para criar desenhos detalhados que dão personalidade única ao seu carro.</li>
+                    <li><strong>Detalhes de Rodas:</strong> Personalize a cor dos aros e pinças de freio para combinar com o conjunto visual.</li>
                 </ul>
-
-                <h3>O Sistema de Tuning Hardcore</h3>
-                <p>A customização no CPM2 2026 foi levada ao extremo. Agora você pode realizar o <strong>Swap de Motor</strong>, trocando blocos originais por V8s ou V12s potentes. Além disso, o novo <strong>Dyno Run</strong> permite que você teste a cavalaria real (WHP) do seu setup antes de desafiar alguém para um racha nas ruas.</p>
-
-                <p>Se você busca o ápice da fidelidade gráfica e da liberdade automobilística, o CPM2 é a sua casa. Prepare seu set-up, ajuste sua suspensão a ar e venha dominar o asfalto na versão mais completa já lançada.</p>
             </article>
         </main>
 
@@ -115,11 +99,9 @@
             <div class="sidebar-box">
                 <h3>Info Técnica</h3>
                 <img src="favicon.png.jpg" alt="Logo Side" class="side-img">
-                <p><strong>Versão:</strong> 1.4.5</p>
-                <p><strong>Requisito:</strong> 4GB RAM +</p>
-                <p><strong>Espaço:</strong> 3.18 GB</p>
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
-                <p style="font-size: 12px; color: #999;">Certifique-se de usar uma conexão Wi-Fi para o download inicial.</p>
+                <p><strong>Configuração:</strong> V10 S85 Swapped</p>
+                <p><strong>Pintura:</strong> Custom Vinyl Layering</p>
+                <p><strong>Foco:</strong> Drag & Drift Build</p>
             </div>
         </aside>
     </div>
