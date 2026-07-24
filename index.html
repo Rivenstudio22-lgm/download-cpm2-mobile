@@ -4,64 +4,197 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CPM2 Central | Motores e Customização</title>
-    
     <link rel="icon" type="image/jpeg" href="favicon.png.jpg">
     <link rel="stylesheet" href="https://cloudflare.com">
-    
+    <!-- FontAwesome para os ícones de carteira e moedas -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        :root { --orange: #ff8c00; --black: #000000; --dark-gray: #111111; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        
-        /* FUNDO PRETO PARA O SITE TODO */
-        body { background-color: var(--black); color: #eeeeee; line-height: 1.8; }
-
-        header { background-color: var(--dark-gray); border-bottom: 2px solid var(--orange); position: sticky; top: 0; z-index: 1000; }
-        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; }
-        .logo { color: var(--orange); font-weight: bold; font-size: 22px; text-transform: uppercase; }
-
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('car-parking-multiplayer-2-free.jpg'); 
-            background-size: cover; background-position: center; height: 500px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px;
+        :root {
+            --orange: #ff8c00;
+            --black: #000000;
+            --dark-gray: #111111;
+            --mpesa: #e21a22; 
+            --emola: #ff6600; 
         }
-        .hero-icon { width: 90px; height: 90px; border-radius: 20px; margin-bottom: 15px; border: 2px solid var(--orange); }
-        .hero h1 { font-size: 38px; text-shadow: 0 0 15px rgba(255,140,0,0.5); margin-bottom: 10px; }
-
-        /* Botões */
-        .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 25px; width: 100%; max-width: 320px; }
-        .btn-download { display: flex; align-items: center; justify-content: center; gap: 15px; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        body {
+            background-color: var(--black);
+            color: #eeeeee;
+            line-height: 1.8;
+        }
+        header {
+            background-color: var(--dark-gray);
+            border-bottom: 2px solid var(--orange);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+        .logo {
+            color: var(--orange);
+            font-weight: bold;
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('car-parking-multiplayer-2-free.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 550px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .hero-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border: 2px solid var(--orange);
+        }
+        .hero h1 {
+            font-size: 38px;
+            text-shadow: 0 0 15px rgba(255,140,0,0.5);
+            margin-bottom: 10px;
+        }
+        .btn-section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #aaa;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 15px;
+            width: 100%;
+            max-width: 320px;
+        }
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
         .btn-google { background-color: var(--orange); }
         .btn-apple { background-color: #222; border: 1px solid #444; }
-        .btn-download:hover { transform: scale(1.05); filter: brightness(1.2); }
-
-        /* Conteúdo em Cards Pretos */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 2.5fr 1fr; gap: 30px; }
-        .article-card { background: var(--dark-gray); padding: 35px; border-radius: 12px; border: 1px solid #222; }
-        .article-card h2 { color: var(--orange); font-size: 28px; margin-bottom: 20px; border-left: 6px solid var(--orange); padding-left: 20px; }
-        .article-card h3 { color: var(--orange); margin-top: 25px; margin-bottom: 10px; }
-        .article-card p { color: #ccc; margin-bottom: 15px; text-align: justify; }
-
-        .sidebar-box { background: var(--dark-gray); padding: 25px; border-radius: 12px; border: 1px solid #222; position: sticky; top: 100px; }
-        .side-img { width: 100%; border-radius: 10px; margin: 15px 0; }
-
-        footer { background: var(--dark-gray); color: #555; text-align: center; padding: 40px; font-size: 13px; margin-top: 60px; border-top: 1px solid #222; }
-
-        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } }
+        .btn-mpesa { background-color: var(--mpesa); }
+        .btn-emola { background-color: var(--emola); border: 1px solid #ff8833; }
+        .btn-download:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2.5fr 1fr;
+            gap: 30px;
+        }
+        .article-card {
+            background: var(--dark-gray);
+            padding: 35px;
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+        .article-card h2 {
+            color: var(--orange);
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-left: 6px solid var(--orange);
+            padding-left: 20px;
+        }
+        .article-card h3 {
+            color: var(--orange);
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .article-card p {
+            color: #ccc;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .sidebar-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .sidebar-box {
+            background: var(--dark-gray);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+        .side-img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .shop-list {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .shop-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+        .shop-list li span { color: var(--orange); font-weight: bold; }
+        footer {
+            background: var(--dark-gray);
+            color: #555;
+            text-align: center;
+            padding: 40px;
+            font-size: 13px;
+            margin-top: 60px;
+            border-top: 1px solid #222;
+        }
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-
     <header>
         <div class="nav-container">
             <div class="logo">CPM2 Central</div>
         </div>
     </header>
-
+    
     <section class="hero">
         <img src="favicon.png.jpg" alt="Logo" class="hero-icon">
         <h1>Car Parking Multiplayer 2</h1>
         <p>Potência máxima e estilo único nas suas mãos.</p>
         
+        <div class="btn-section-title">Baixar o Jogo</div>
         <div class="btn-group">
             <a href="https://google.com" target="_blank" class="btn-download btn-google">
                 <i class="fab fa-google-play fa-2x"></i>
@@ -72,6 +205,18 @@
                 <div style="text-align: left;"><span>iOS</span><br><b>APP STORE</b></div>
             </a>
         </div>
+
+        <div class="btn-section-title">Recarregar Coins & Cash</div>
+        <div class="btn-group">
+            <a href="#recarga-info" class="btn-download btn-mpesa">
+                <i class="fas fa-wallet fa-2x"></i>
+                <div style="text-align: left;"><span>Recarga via</span><br><b>M-PESA</b></div>
+            </a>
+            <a href="#recarga-info" class="btn-download btn-emola">
+                <i class="fas fa-money-bill-wave fa-2x"></i>
+                <div style="text-align: left;"><span>Recarga via</span><br><b>E-MOLA</b></div>
+            </a>
+        </div>
     </section>
 
     <div class="container">
@@ -79,9 +224,8 @@
             <article class="article-card">
                 <h2>Potência Sob o Capô: Os Motores do CPM2</h2>
                 <p>O coração de cada veículo no <strong>Car Parking Multiplayer 2</strong> é o seu motor. Com a nova atualização, o jogo permite realizar o **Swap de Motor**, possibilitando a instalação de blocos de alto desempenho, como motores S85, V12 ou até configurações customizadas para alcançar mais de 2.000 cavalos de potência.</p>
-                
                 <p>Você pode otimizar o desempenho ajustando o **ECU**, instalando turbocompressores e configurando a relação de marchas para maximizar a aceleração ou a velocidade máxima. Além disso, o sistema de som realista reflete cada modificação feita no escapamento e na turbina.</p>
-
+                
                 <h2>Plotagens e Estilo Visual</h2>
                 <p>O sistema de customização visual do CPM2 é um dos mais robustos da categoria. Agora, os jogadores podem criar designs complexos utilizando centenas de camadas de vinil, decalques personalizados e até **livery nos vidros**.</p>
                 
@@ -94,8 +238,23 @@
                 </ul>
             </article>
         </main>
+        
+        <aside class="sidebar-wrapper">
+            <div class="sidebar-box" id="recarga-info">
+                <h3>Recargas Disponíveis</h3>
+                <p style="font-size: 13px; color: #aaa; margin-bottom: 10px;">Compre moedas de forma rápida e segura via Mobile Money Moçambique.</p>
+                <ul class="shop-list">
+                    <li>1.000.000 Cash <span>150 MT</span></li>
+                    <li>5.000.000 Cash <span>500 MT</span></li>
+                    <li>500 Coins <span>200 MT</span></li>
+                    <li>1.500 Coins <span>500 MT</span></li>
+                    <li>Pack Full Motores <span>750 MT</span></li>
+                </ul>
+                <p style="font-size: 12px; margin-top: 15px; color: #888; text-align: center;">
+                    Selecione uma opção acima ou envie uma mensagem ao suporte para validar o seu pagamento via <b>M-Pesa</b> ou <b>e-Mola</b>.
+                </p>
+            </div>
 
-        <aside>
             <div class="sidebar-box">
                 <h3>Info Técnica</h3>
                 <img src="favicon.png.jpg" alt="Logo Side" class="side-img">
@@ -109,6 +268,5 @@
     <footer>
         <p>&copy; 2024 CPM2 Central - Fã Clube Independente.</p>
     </footer>
-
 </body>
 </html>
