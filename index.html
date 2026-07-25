@@ -53,14 +53,20 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 20px;
+            gap: 10px;
         }
         .logo {
             color: var(--orange);
             font-weight: bold;
             font-size: 22px;
             text-transform: uppercase;
+            flex-grow: 1;
         }
-        .btn-patrocinadores {
+        .header-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-header {
             background: transparent;
             color: white;
             border: 1px solid var(--orange);
@@ -70,12 +76,12 @@
             font-weight: bold;
             transition: 0.3s;
         }
-        .btn-patrocinadores:hover {
+        .btn-header:hover {
             background: var(--orange);
             color: black;
             transform: scale(1.05);
         }
-        .modal-patrocinadores {
+        .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
@@ -87,21 +93,37 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
+            overflow-y: auto;
         }
-        .modal-patrocinadores.active {
+        .modal-overlay.active {
             opacity: 1;
             pointer-events: all;
         }
-        .modal-content {
+        .btn-fechar-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: #aaa;
+            border: none;
+            font-size: 35px;
+            cursor: pointer;
+            transition: 0.3s;
+            z-index: 2100;
+        }
+        .btn-fechar-modal:hover {
+            color: var(--orange);
+        }
+        .modal-patrocinadores-content {
+            text-align: center;
             max-width: 600px;
             width: 100%;
         }
-        .modal-content h2 {
+        .modal-patrocinadores-content h2 {
             font-size: 32px;
             color: var(--orange);
             margin-bottom: 25px;
@@ -136,19 +158,89 @@
             transform: scale(1.05);
             filter: brightness(1.2);
         }
-        .btn-fechar-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: transparent;
-            color: #aaa;
-            border: none;
-            font-size: 35px;
-            cursor: pointer;
+        .modal-carros-content {
+            max-width: 1100px;
+            width: 100%;
+            margin: auto;
+        }
+        .modal-carros-content h2 {
+            font-size: 32px;
+            color: var(--orange);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        .grid-carros {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+        .card-carro {
+            background: #111116;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
             transition: 0.3s;
         }
-        .btn-fechar-modal:hover {
+        .card-carro:hover {
+            border-color: var(--orange);
+            transform: translateY(-5px);
+        }
+        .img-carro-espaco {
+            width: 100%;
+            height: 180px;
+            background: #1c1c24;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 14px;
+            overflow: hidden;
+            border: 1px dashed #444;
+        }
+        .img-carro-espaco img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .info-carro {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .info-carro p {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 6px;
+            border-bottom: 1px solid #1c1c24;
+            padding-bottom: 4px;
+        }
+        .info-carro strong {
             color: var(--orange);
+        }
+        .btn-comprar-carro {
+            background: var(--orange);
+            color: black;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            display: block;
+        }
+        .btn-comprar-carro:hover {
+            filter: brightness(1.2);
+            transform: scale(1.02);
         }
         .hero {
             background: linear-gradient(rgba(2, 2, 8, 0.6), rgba(2, 2, 8, 0.85)), url('car-parking-multiplayer-2-free.jpg');
@@ -237,7 +329,6 @@
             padding-left: 20px;
         }
         .article-card h3 {
-            color: var(--orange);
             margin-top: 25px;
             margin-bottom: 10px;
         }
@@ -293,20 +384,75 @@
     <canvas id="space-canvas"></canvas>
 
     <!-- JANELA MODAL DOS PATROCINADORES -->
-    <div class="modal-patrocinadores" id="modalPatrocinadores">
-        <button class="btn-fechar-modal" id="fecharModal">&times;</button>
-        <div class="modal-content">
+    <div class="modal-overlay" id="modalPatrocinadores">
+        <button class="btn-fechar-modal" id="fecharModalPatrocinadores">&times;</button>
+        <div class="modal-patrocinadores-content">
             <h2>Patrocinado por:</h2>
-            <img src="rivenstudio.png" alt="Patrocinador Logo" class="img-patrocinador">
+            <!-- COLOQUE SUA IMAGEM DE PATROCINADOR NO SRC ABAIXO -->
+            <img src="link-da-sua-imagem.jpg" alt="Patrocinador Logo" class="img-patrocinador">
             <div class="txt-patrocinador">Reivenstudio MZ</div>
-            <a href="https://reivenstudio.com" target="_blank" class="link-patrocinador">Acessar Site</a>
+            <!-- COLOQUE SEU DOMÍNIO/LINK NO HREF ABAIXO -->
+            <a href="https://seu-dominio.com" target="_blank" class="link-patrocinador">Acessar Site</a>
         </div>
     </div>
 
+    <!-- JANELA MODAL DE COMPRAR CARROS -->
+    <div class="modal-overlay" id="modalCarros">
+        <button class="btn-fechar-modal" id="fecharModalCarros">&times;</button>
+        <div class="modal-carros-content">
+            <h2>Carros Disponíveis</h2>
+            <div class="grid-carros">
+                <!-- CAIXA DO CARRO 1 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco">
+                        <img src="foto-carro1.jpg" alt="Carro 1">
+                    </div>
+                    <div class="info-carro">
+                        <p><strong>Marca:</strong> Nissan</p>
+                        <p><strong>Motor:</strong> V8 Swapped</p>
+                        <p><strong>Cavalos HP:</strong> 2200 HP</p>
+                        <p><strong>Peças Incluídas:</strong> Turbo T3, ECU Tuning, Pneus Drift</p>
+                    </div>
+                    <a href="https://seu-link-de-compra.com" target="_blank" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CAIXA DO CARRO 2 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco">
+                        <img src="foto-carro2.jpg" alt="Carro 2">
+                    </div>
+                    <div class="info-carro">
+                        <p><strong>Marca:</strong> BMW</p>
+                        <p><strong>Motor:</strong> V10 S85</p>
+                        <p><strong>Cavalos HP:</strong> 1800 HP</p>
+                        <p><strong>Peças Incluídas:</strong> Escapamento Full, Suspensão Ar</p>
+                    </div>
+                    <a href="https://seu-link-de-compra.com" target="_blank" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CAIXA DO CARRO 3 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco">
+                        <img src="foto-carro3.jpg" alt="Carro 3">
+                    </div>
+                    <div class="info-carro">
+                        <p><strong>Marca:</strong> Toyota</p>
+                        <p><strong>Motor:</strong> Quad-Turbo Custom</p>
+                        <p><strong>Cavalos HP:</strong> 2500 HP</p>
+                        <p><strong>Peças Incluídas:</strong> Caixa Sequencial, Kit Nitro</p>
+                    </div>
+                    <a href="https://seu-link-de-compra.com" target="_blank" class="btn-comprar-carro">Comprar</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <header>
         <div class="nav-container">
             <div class="logo">CPM2 Central</div>
-            <button class="btn-patrocinadores" id="abrirModal">Patrocinadores</button>
+            <div class="header-buttons">
+                <button class="btn-header" id="abrirModalCarros">Comprar Carros</button>
+                <button class="btn-header" id="abrirModalPatrocinadores">Patrocinadores</button>
+            </div>
         </div>
     </header>
 
@@ -314,6 +460,7 @@
         <img src="favicon.png.jpg" alt="Logo" class="hero-icon">
         <h1>Car Parking Multiplayer 2</h1>
         <p>Potência máxima e estilo único nas suas mãos.</p>
+        
         <div class="btn-section-title">Baixar o Jogo</div>
         <div class="btn-group">
             <a href="https://google.com" target="_blank" class="btn-download btn-google">
@@ -371,7 +518,7 @@
                     <li>Pack Full Motores <span>750 MT</span></li>
                 </ul>
                 <p style="font-size: 12px; margin-top: 15px; color: #888; text-align: center;">
-                    Selecione uma opção acima ou envie uma mensagem ao suporte para validar o seu pagamento via <b>M-Pesa</b> or <b>e-Mola</b>.
+                    Selecione uma opção acima ou envie uma mensagem ao suporte para validar o seu pagamento via <b>M-Pesa</b> ou <b>e-Mola</b>.
                 </p>
             </div>
 
@@ -473,30 +620,50 @@
         }
 
         window.addEventListener('click', (e) => {
-            if(e.target.closest('.btn-fechar-modal') || e.target.closest('.link-patrocinador')) return;
+            if(e.target.closest('.btn-fechar-modal') || e.target.closest('.link-patrocinador') || e.target.closest('.btn-comprar-carro')) return;
             
             centerX = e.clientX;
             centerY = e.clientY;
             targetSpeed = 25;
         });
 
-        const modal = document.getElementById('modalPatrocinadores');
-        const btnAbrir = document.getElementById('abrirModal');
-        const btnFechar = document.getElementById('fecharModal');
+        const modalPatrocinadores = document.getElementById('modalPatrocinadores');
+        const btnAbrirPatrocinadores = document.getElementById('abrirModalPatrocinadores');
+        const btnFecharPatrocinadores = document.getElementById('fecharModalPatrocinadores');
 
-        btnAbrir.addEventListener('click', (e) => {
+        btnAbrirPatrocinadores.addEventListener('click', (e) => {
             e.stopPropagation(); 
-            modal.classList.add('active');
+            modalPatrocinadores.classList.add('active');
         });
 
-        btnFechar.addEventListener('click', (e) => {
+        btnFecharPatrocinadores.addEventListener('click', (e) => {
             e.stopPropagation();
-            modal.classList.remove('active');
+            modalPatrocinadores.classList.remove('active');
         });
 
-        modal.addEventListener('click', (e) => {
-            if(e.target === modal) {
-                modal.classList.remove('active');
+        modalPatrocinadores.addEventListener('click', (e) => {
+            if(e.target === modalPatrocinadores) {
+                modalPatrocinadores.classList.remove('active');
+            }
+        });
+
+        const modalCarros = document.getElementById('modalCarros');
+        const btnAbrirCarros = document.getElementById('abrirModalCarros');
+        const btnFecharCarros = document.getElementById('fecharModalCarros');
+
+        btnAbrirCarros.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            modalCarros.classList.add('active');
+        });
+
+        btnFecharCarros.addEventListener('click', (e) => {
+            e.stopPropagation();
+            modalCarros.classList.remove('active');
+        });
+
+        modalCarros.addEventListener('click', (e) => {
+            if(e.target === modalCarros) {
+                modalCarros.classList.remove('active');
             }
         });
 
