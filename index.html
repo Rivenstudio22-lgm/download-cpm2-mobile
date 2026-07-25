@@ -202,7 +202,6 @@
     </style>
 </head>
 <body>
-    <!-- Novo Canvas adicionado para renderizar o efeito do céu estrelado -->
     <canvas id="space-canvas"></canvas>
 
     <header>
@@ -291,7 +290,7 @@
         <p>&copy; 2024 CPM2 Central - Fã Clube Independente.</p>
     </footer>
 
-    <!-- SCRIPT JAVASCRIPT: Controla o céu estrelado e o efeito warp nos cliques -->
+    <!-- SCRIPT JAVASCRIPT GLOBAL ATUALIZADO -->
     <script>
         const canvas = document.getElementById('space-canvas');
         const ctx = canvas.getContext('2d');
@@ -302,15 +301,12 @@
         const numStars = 150;
         const stars = [];
         
-        // Centro padrão do efeito (meio da tela)
         let centerX = width / 2;
         let centerY = height / 2;
         
-        // Variáveis de velocidade do zoom
         let currentSpeed = 0.5;
         let targetSpeed = 0.5;
 
-        // Atualizar tamanho do canvas se a janela mudar
         window.addEventListener('resize', () => {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
@@ -320,43 +316,35 @@
             }
         });
 
-        // Inicializar estrelas com coordenadas 3D simuladas
         for (let i = 0; i < numStars; i++) {
             stars.push({
                 x: Math.random() * width - width / 2,
                 y: Math.random() * height - height / 2,
                 z: Math.random() * width,
-                color: Math.random() > 0.8 ? '#87ceeb' : '#ffffff' // Estrelas brancas e levemente azuladas
+                color: Math.random() > 0.8 ? '#87ceeb' : '#ffffff'
             });
         }
 
-        // Função principal de desenho e animação
         function animate() {
-            // Desenha o fundo azul escuro com rastro dependendo da velocidade (efeito blur de movimento)
             ctx.fillStyle = `rgba(2, 2, 8, ${currentSpeed > 2 ? '0.15' : '0.4'})`;
             ctx.fillRect(0, 0, width, height);
 
-            // Suavizar a transição da velocidade de volta ao normal
             currentSpeed += (targetSpeed - currentSpeed) * 0.05;
             if (targetSpeed > 0.5) {
-                targetSpeed -= 0.2; // Reduz a velocidade gradativamente após o pico
+                targetSpeed -= 0.2;
                 if (targetSpeed < 0.5) targetSpeed = 0.5;
             }
 
             for (let i = 0; i < numStars; i++) {
                 const star = stars[i];
-                
-                // Mover estrela em direção ao observador no eixo Z
                 star.z -= currentSpeed;
 
-                // Reposicionar estrela se ela sair da tela
                 if (star.z <= 0) {
                     star.z = width;
                     star.x = Math.random() * width - width / 2;
                     star.y = Math.random() * height - height / 2;
                 }
 
-                // Cálculo de perspectiva em relação ao centro definido (posição do botão ou tela)
                 const k = 128.0 / star.z;
                 const px = star.x * k + centerX;
                 const py = star.y * k + centerY;
@@ -367,7 +355,6 @@
                     ctx.beginPath();
                     ctx.fillStyle = star.color;
                     
-                    // Se estiver em alta velocidade, desenha linhas simulando rastro de velocidade
                     if (currentSpeed > 2) {
                         const lastK = 128.0 / (star.z + currentSpeed * 2);
                         const oX = star.x * lastK + centerX;
@@ -387,22 +374,16 @@
             requestAnimationFrame(animate);
         }
 
-        // Adiciona o gatilho de clique em TODOS os botões da página
-        document.querySelectorAll('.btn-download').forEach(button => {
-            button.addEventListener('click', (e) => {
-                // Pega as coordenadas exatas do botão clicado na tela
-                const rect = button.getBoundingClientRect();
-                
-                // Define o novo centro da explosão/zoom para o meio desse botão específico
-                centerX = rect.left + rect.width / 2;
-                centerY = rect.top + rect.height / 2;
-                
-                // Dispara a velocidade máxima
-                targetSpeed = 25;
-            });
+        // ALTERAÇÃO: Evento adicionado à janela inteira (window) para capturar qualquer clique na tela
+        window.addEventListener('click', (e) => {
+            // Atualiza o centro do efeito exatamente para a coordenada X e Y do clique do rato/toque do ecrã
+            centerX = e.clientX;
+            centerY = e.clientY;
+            
+            // Ativa o zoom de velocidade (efeito warp)
+            targetSpeed = 25;
         });
 
-        // Inicia a animação
         animate();
     </script>
 </body>
