@@ -11,8 +11,8 @@
     <style>
         :root {
             --orange: #ff8c00;
-            --black: #000000;
-            --dark-gray: rgba(17, 17, 17, 0.85); 
+            --black: #020817; 
+            --dark-gray: rgba(11, 15, 30, 0.75); 
             --mpesa: #e21a22; 
             --emola: #ff6600; 
         }
@@ -23,7 +23,7 @@
             font-family: 'Segoe UI', Arial, sans-serif;
         }
         body {
-            background-color: #020208;
+            background-color: var(--black);
             color: #eeeeee;
             line-height: 1.8;
             position: relative;
@@ -39,12 +39,12 @@
             pointer-events: none;
         }
         header {
-            background-color: var(--dark-gray);
+            background-color: rgba(11, 15, 30, 0.85);
             border-bottom: 2px solid var(--orange);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
         .nav-container {
             max-width: 1100px;
@@ -87,13 +87,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(2, 2, 8, 0.95);
+            background: rgba(2, 8, 23, 0.96);
             z-index: 2000;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
+            justify-content: flex-start;
+            padding: 60px 20px;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.4s ease;
@@ -104,24 +104,33 @@
             pointer-events: all;
         }
         .btn-fechar-modal {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
-            background: transparent;
+            background: rgba(0,0,0,0.5);
             color: #aaa;
-            border: none;
-            font-size: 35px;
+            border: 1px solid #333;
+            width: 45px;
+            height: 45px;
+            font-size: 30px;
+            border-radius: 50%;
             cursor: pointer;
             transition: 0.3s;
             z-index: 2100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .btn-fechar-modal:hover {
             color: var(--orange);
+            border-color: var(--orange);
+            transform: scale(1.1);
         }
         .modal-patrocinadores-content {
             text-align: center;
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
+            margin: auto;
         }
         .modal-patrocinadores-content h2 {
             font-size: 32px;
@@ -133,21 +142,33 @@
         .img-patrocinador {
             max-width: 100%;
             height: auto;
+            max-height: 250px;
             border-radius: 12px;
-            border: 2px solid #222;
-            margin-bottom: 15px;
+            border: 2px solid var(--orange);
+            margin-bottom: 20px;
         }
         .txt-patrocinador {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+        .bio-patrocinador {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #222;
+            padding: 20px;
+            border-radius: 8px;
+            color: #ccc;
+            text-align: justify;
+            font-size: 15px;
+            margin-bottom: 25px;
+            line-height: 1.6;
         }
         .link-patrocinador {
             display: inline-block;
             background: var(--orange);
             color: black;
-            padding: 12px 30px;
+            padding: 12px 35px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
@@ -159,50 +180,53 @@
             filter: brightness(1.2);
         }
         .modal-carros-content {
-            max-width: 1100px;
+            max-width: 1200px;
             width: 100%;
-            margin: auto;
+            margin: 0 auto;
         }
         .modal-carros-content h2 {
             font-size: 32px;
             color: var(--orange);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             text-transform: uppercase;
             text-align: center;
             letter-spacing: 2px;
         }
         .grid-carros {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             width: 100%;
+            padding-bottom: 40px;
         }
         .card-carro {
-            background: #111116;
-            border: 1px solid #222;
+            background: rgba(15, 22, 42, 0.85);
+            border: 1px solid #1e293b;
             border-radius: 12px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             transition: 0.3s;
+            backdrop-filter: blur(4px);
         }
         .card-carro:hover {
             border-color: var(--orange);
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 140, 0, 0.1);
         }
         .img-carro-espaco {
             width: 100%;
-            height: 180px;
-            background: #1c1c24;
+            height: 170px;
+            background: #0b0f19;
             border-radius: 8px;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #555;
-            font-size: 14px;
+            color: #445577;
+            font-size: 13px;
             overflow: hidden;
-            border: 1px dashed #444;
+            border: 1px dashed #334155;
         }
         .img-carro-espaco img {
             width: 100%;
@@ -210,24 +234,35 @@
             object-fit: cover;
         }
         .info-carro {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-grow: 1;
         }
         .info-carro p {
             font-size: 14px;
-            color: #ccc;
+            color: #ddd;
             margin-bottom: 6px;
-            border-bottom: 1px solid #1c1c24;
+            border-bottom: 1px solid #1e293b;
             padding-bottom: 4px;
         }
         .info-carro strong {
             color: var(--orange);
         }
+        .preco-carro {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4ade80;
+            margin-bottom: 12px;
+            text-align: center;
+            border: 1px dashed rgba(74, 222, 128, 0.3);
+            padding: 4px;
+            border-radius: 6px;
+            background: rgba(74, 222, 128, 0.05);
+        }
         .btn-comprar-carro {
             background: var(--orange);
             color: black;
             border: none;
-            padding: 10px;
+            padding: 11px;
             border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
@@ -243,7 +278,7 @@
             transform: scale(1.02);
         }
         .hero {
-            background: linear-gradient(rgba(2, 2, 8, 0.6), rgba(2, 2, 8, 0.85)), url('car-parking-multiplayer-2-free.jpg');
+            background: linear-gradient(rgba(2, 8, 23, 0.6), rgba(2, 8, 23, 0.85)), url('car-parking-multiplayer-2-free.jpg');
             background-size: cover;
             background-position: center;
             min-height: 550px;
@@ -288,6 +323,141 @@
         .btn-download {
             display: flex;
             align-items: center;
+    <!-- JANELA MODAL DOS PATROCINADORES -->
+    <div class="modal-overlay" id="modalPatrocinadores">
+        <button class="btn-fechar-modal" id="fecharModalPatrocinadores">&times;</button>
+        <div class="modal-patrocinadores-content">
+            <h2>Patrocinado por:</h2>
+            <img src="link-da-sua-imagem.jpg" alt="Patrocinador Logo" class="img-patrocinador">
+            <div class="txt-patrocinador">Reivenstudio MZ</div>
+            <div class="bio-patrocinador">
+                Escreva aqui a biografia detalhada do patrocinador. Você pode adicionar a história da empresa, objetivos, conquistas e qualquer informação que achar relevante para os seus utilizadores e clientes lerem.
+            </div>
+            <a href="https://seu-dominio.com" target="_blank" class="link-patrocinador">Acessar Site</a>
+        </div>
+    </div>
+
+    <!-- JANELA MODAL DE COMPRAR CARROS -->
+    <div class="modal-overlay" id="modalCarros">
+        <button class="btn-fechar-modal" id="fecharModalCarros">&times;</button>
+        <div class="modal-carros-content">
+            <h2>Carros Disponíveis</h2>
+            <div class="grid-carros">
+                
+                <!-- CARRO 1 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro1.jpg" alt="Carro"></div>
+                    <div class="info-carro">
+                        <p><strong>Marca:</strong> Nissan GTR</p>
+                        <p><strong>Motor:</strong> V8 Swapped</p>
+                        <p><strong>Cavalos HP:</strong> 2200 HP</p>
+                        <p>Peças: Turbo T3, ECU Tuning, Pneus Drift</p>
+                    </div>
+                    <div class="preco-carro">350 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 2 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro2.jpg" alt="Carro"></div>
+                    <div class="info-carro">
+                        <p><strong>Marca:</strong> BMW M5</p>
+                        <p><strong>Motor:</strong> V10 S85</p>
+                        <p><strong>Cavalos HP:</strong> 1800 HP</p>
+                        <p>Peças: Escapamento Full, Suspensão Ar</p>
+                    </div>
+                    <div class="preco-carro">400 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 3 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro3.jpg" alt="Carro"></div>
+                    <div class="info-carro">
+                        <p><strong>Marca:</strong> Toyota Supra</p>
+                        <p><strong>Motor:</strong> Quad-Turbo Custom</p>
+                        <p><strong>Cavalos HP:</strong> 2500 HP</p>
+                        <p>Peças: Caixa Sequencial, Kit Nitro</p>
+                    </div>
+                    <div class="preco-carro">500 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 4 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro4.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 5 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro5.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 6 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro6.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 7 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro7.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 8 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro8.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 9 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro9.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 10 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro10.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 11 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro11.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+                <!-- CARRO 12 -->
+                <div class="card-carro">
+                    <div class="img-carro-espaco"><img src="carro12.jpg" alt="Carro"></div>
+                    <div class="info-carro"><p><strong>Marca:</strong> Espaço Vago</p><p><strong>Motor:</strong> ---</p><p><strong>Cavalos HP:</strong> ---</p><p>Peças: ---</p></div>
+                    <div class="preco-carro">000 MT</div>
+                    <a href="#" class="btn-comprar-carro">Comprar</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
             justify-content: center;
             gap: 15px;
             color: white;
@@ -318,8 +488,8 @@
             background: var(--dark-gray);
             padding: 35px;
             border-radius: 12px;
-            border: 1px solid #222;
-            backdrop-filter: blur(5px);
+            border: 1px solid #1e293b;
+            backdrop-filter: blur(6px);
         }
         .article-card h2 {
             color: var(--orange);
@@ -346,8 +516,8 @@
             background: var(--dark-gray);
             padding: 25px;
             border-radius: 12px;
-            border: 1px solid #222;
-            backdrop-filter: blur(5px);
+            border: 1px solid #1e293b;
+            backdrop-filter: blur(6px);
         }
         .side-img {
             width: 100%;
@@ -360,7 +530,7 @@
         }
         .shop-list li {
             padding: 8px 0;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #1e293b;
             display: flex;
             justify-content: space-between;
             font-size: 14px;
@@ -373,7 +543,7 @@
             padding: 40px;
             font-size: 13px;
             margin-top: 60px;
-            border-top: 1px solid #222;
+            border-top: 1px solid #1e293b;
         }
         @media (max-width: 850px) {
             .container { grid-template-columns: 1fr; }
@@ -383,69 +553,6 @@
 <body>
     <canvas id="space-canvas"></canvas>
 
-    <!-- JANELA MODAL DOS PATROCINADORES -->
-    <div class="modal-overlay" id="modalPatrocinadores">
-        <button class="btn-fechar-modal" id="fecharModalPatrocinadores">&times;</button>
-        <div class="modal-patrocinadores-content">
-            <h2>Patrocinado por:</h2>
-            <!-- COLOQUE SUA IMAGEM DE PATROCINADOR NO SRC ABAIXO -->
-            <img src="rivenstudio.png" alt="Patrocinador Logo" class="img-patrocinador">
-            <div class="txt-patrocinador">Reivenstudio MZ</div>
-            <!-- COLOQUE SEU DOMÍNIO/LINK NO HREF ABAIXO -->
-            <a href="https://reivenstudio.com" target="_blank" class="link-patrocinador">Acessar Site</a>
-        </div>
-    </div>
-
-    <!-- JANELA MODAL DE COMPRAR CARROS -->
-    <div class="modal-overlay" id="modalCarros">
-        <button class="btn-fechar-modal" id="fecharModalCarros">&times;</button>
-        <div class="modal-carros-content">
-            <h2>Carros Disponíveis</h2>
-            <div class="grid-carros">
-                <!-- CAIXA DO CARRO 1 -->
-                <div class="card-carro">
-                    <div class="img-carro-espaco">
-                        <img src="foto-carro1.jpg" alt="Carro 1">
-                    </div>
-                    <div class="info-carro">
-                        <p><strong>Marca:</strong> Nissan</p>
-                        <p><strong>Motor:</strong> V8 Swapped</p>
-                        <p><strong>Cavalos HP:</strong> 2200 HP</p>
-                        <p><strong>Peças Incluídas:</strong> Turbo T3, ECU Tuning, Pneus Drift</p>
-                    </div>
-                    <a href="https://seu-link-de-compra.com" target="_blank" class="btn-comprar-carro">Comprar</a>
-                </div>
-
-                <!-- CAIXA DO CARRO 2 -->
-                <div class="card-carro">
-                    <div class="img-carro-espaco">
-                        <img src="foto-carro2.jpg" alt="Carro 2">
-                    </div>
-                    <div class="info-carro">
-                        <p><strong>Marca:</strong> BMW</p>
-                        <p><strong>Motor:</strong> V10 S85</p>
-                        <p><strong>Cavalos HP:</strong> 1800 HP</p>
-                        <p><strong>Peças Incluídas:</strong> Escapamento Full, Suspensão Ar</p>
-                    </div>
-                    <a href="https://seu-link-de-compra.com" target="_blank" class="btn-comprar-carro">Comprar</a>
-                </div>
-
-                <!-- CAIXA DO CARRO 3 -->
-                <div class="card-carro">
-                    <div class="img-carro-espaco">
-                        <img src="foto-carro3.jpg" alt="Carro 3">
-                    </div>
-                    <div class="info-carro">
-                        <p><strong>Marca:</strong> Toyota</p>
-                        <p><strong>Motor:</strong> Quad-Turbo Custom</p>
-                        <p><strong>Cavalos HP:</strong> 2500 HP</p>
-                        <p><strong>Peças Incluídas:</strong> Caixa Sequencial, Kit Nitro</p>
-                    </div>
-                    <a href="https://seu-link-de-compra.com" target="_blank" class="btn-comprar-carro">Comprar</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <header>
         <div class="nav-container">
             <div class="logo">CPM2 Central</div>
@@ -533,7 +640,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 CPM2 Central - Fã Clube Independente.</p>
+        <p>&copy; 2026 CPM2 Central - Fã Clube Independente.</p>
     </footer>
 
     <script>
@@ -543,7 +650,7 @@
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
 
-        const numStars = 150;
+        const numStars = 180; 
         const stars = [];
         
         let centerX = width / 2;
@@ -566,12 +673,12 @@
                 x: Math.random() * width - width / 2,
                 y: Math.random() * height - height / 2,
                 z: Math.random() * width,
-                color: Math.random() > 0.8 ? '#87ceeb' : '#ffffff'
+                color: Math.random() > 0.7 ? '#99ccff' : '#ffffff' 
             });
         }
 
         function animate() {
-            ctx.fillStyle = `rgba(2, 2, 8, ${currentSpeed > 2 ? '0.15' : '0.4'})`;
+            ctx.fillStyle = `rgba(2, 8, 23, ${currentSpeed > 2 ? '0.15' : '0.4'})`;
             ctx.fillRect(0, 0, width, height);
 
             currentSpeed += (targetSpeed - currentSpeed) * 0.05;
@@ -593,7 +700,6 @@
                 const k = 128.0 / star.z;
                 const px = star.x * k + centerX;
                 const py = star.y * k + centerY;
-
                 if (px >= 0 && px <= width && py >= 0 && py <= height) {
                     const size = (1 - star.z / width) * 3;
                     
@@ -631,41 +737,17 @@
         const btnAbrirPatrocinadores = document.getElementById('abrirModalPatrocinadores');
         const btnFecharPatrocinadores = document.getElementById('fecharModalPatrocinadores');
 
-        btnAbrirPatrocinadores.addEventListener('click', (e) => {
-            e.stopPropagation(); 
-            modalPatrocinadores.classList.add('active');
-        });
-
-        btnFecharPatrocinadores.addEventListener('click', (e) => {
-            e.stopPropagation();
-            modalPatrocinadores.classList.remove('active');
-        });
-
-        modalPatrocinadores.addEventListener('click', (e) => {
-            if(e.target === modalPatrocinadores) {
-                modalPatrocinadores.classList.remove('active');
-            }
-        });
+        btnAbrirPatrocinadores.addEventListener('click', (e) => { e.stopPropagation(); modalPatrocinadores.classList.add('active'); });
+        btnFecharPatrocinadores.addEventListener('click', (e) => { e.stopPropagation(); modalPatrocinadores.classList.remove('active'); });
+        modalPatrocinadores.addEventListener('click', (e) => { if(e.target === modalPatrocinadores) modalPatrocinadores.classList.remove('active'); });
 
         const modalCarros = document.getElementById('modalCarros');
         const btnAbrirCarros = document.getElementById('abrirModalCarros');
         const btnFecharCarros = document.getElementById('fecharModalCarros');
 
-        btnAbrirCarros.addEventListener('click', (e) => {
-            e.stopPropagation(); 
-            modalCarros.classList.add('active');
-        });
-
-        btnFecharCarros.addEventListener('click', (e) => {
-            e.stopPropagation();
-            modalCarros.classList.remove('active');
-        });
-
-        modalCarros.addEventListener('click', (e) => {
-            if(e.target === modalCarros) {
-                modalCarros.classList.remove('active');
-            }
-        });
+        btnAbrirCarros.addEventListener('click', (e) => { e.stopPropagation(); modalCarros.classList.add('active'); });
+        btnFecharCarros.addEventListener('click', (e) => { e.stopPropagation(); modalCarros.classList.remove('active'); });
+        modalCarros.addEventListener('click', (e) => { if(e.target === modalCarros) modalCarros.classList.remove('active'); });
 
         animate();
     </script>
